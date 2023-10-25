@@ -19,16 +19,7 @@
         input.placeholder = 'Введите название нового дела'; //этот текст отображается всегда, когда в поле ничего не введено
         buttonWrapper.classList.add('input-group-append');
         button.classList.add('btn', 'btn-primary');
-
-
-        //button.disabled= true;
-        
-        // if(input === 'Введите название нового дела'){
-            // button.classList.add('btn', 'btn-primary', 'disabled');
-        // }
-
         button.textContent = 'Добавить дело';
-
         buttonWrapper.append(button);
         form.append(input);
         form.append(buttonWrapper);
@@ -47,16 +38,10 @@
         return list;
     }
 
-    /*
-    function createArray(){
-        let array = [];
-        return array;
-
-    }
-    */
 
     function createTodoItem(name, done){ //создаст элемент списка дел
         let todoItem = {name, done}
+        //todoItem.done = false;
         let item = document.createElement('li');
         //кнопки помещаем в элемент, который красиво покажет их в одной группе
         let buttonGroup = document.createElement('div');
@@ -85,8 +70,7 @@
         }
 
         let id = getRandomArbitrary(0, 100);
-
-        
+   
         //приложению нужен доступ к самому элкменту и кнопкам, чтобы обрабатывать события нажатия
         return{
             item, 
@@ -94,10 +78,11 @@
             deleteButton,
             id,
             name,
+            done,
         };
     }
 
-    function createTodoApp(container, title = 'Список дел'){
+    function createTodoApp(container, title = 'Список дел', listName){
         //let container = document.getElementById('todo-app');
 
         let todoAppTitle = createAppTitle(title);
@@ -111,33 +96,85 @@
         container.append(todoItemForm.form);
         container.append(todoList);
 
-        //todoList.append(todoItems[0].item);
-        //todoList.append(todoItems[1].item);
+        function SetData(key,data){ //запись массива дел в хранилище
+            function dataToJson(data){
+                return JSON.stringify(data);
+            }
+    
+            function setCartData(key, jsonData){
+                return localStorage.setItem(key, jsonData);
+            }
 
+            let jsonData = dataToJson(data);
+            return setCartData(key, jsonData);
+        }
+
+        function GetData(key){ //получение массива дел из хранилища
+            function getCartData(){
+                return localStorage.getItem(key);
+            }
+    
+            function jsonToData(data){
+                return JSON.parse(data);
+            }
+            let data = getCartData();
+            return jsonToData(data);
+        }
+
+        //выводим значения из localStorage
+        let existingData = GetData(listName);
+        if(!existingData === null){
+            for(i in existingData){
+                array.push(existingData[i]);
+                let newItem = createTodoItem(existingData[i].name, false);
+                todoList.append(newItem.item);
+                
+            }
+        }
 
         //браузер создает событие submit на форме по нажатию Enter или на кнопку создания дела
         todoItemForm.form.addEventListener('submit', function(e){
             //эта строчка необходима, чтобы предотвратить стандартное действие браузера
             //в данном случае, мы не хоти, чтобы страница перезагружалась при отправке формы
             e.preventDefault();
-            //todoItemForm.button.disabled= false;
 
             //игнорируем создание элемента, если пользователь ничего не ввел в поле
             if(!todoItemForm.input.value){
-                //todoItemForm.button.disabled= false;
+                todoItemForm.button.disabled= false;
                 return;
             }
-            
+
+            todoItemForm.button.disabled = true;
+            todoItemForm.input.addEventListener('input', () => {
+                todoItemForm.button.disabled = !todoItemForm.input.value.length;
+            })
+
             //создаем и добавляем в список новое дело с названием из поля для ввода
             //todoList.append(createTodoItem(todoItemForm.input.value).item);
-
-            let todoItem = createTodoItem(todoItemForm.input.value);
-
             
+            //создаем элемент дела(получаем из инпута)
+            let todoItem = createTodoItem(todoItemForm.input.value, false);
 
+            //addToCart(todoItem);
+   
             //добавляем обработчики на кнопки
             todoItem.doneButton.addEventListener('click', function(){
                 todoItem.item.classList.toggle('list-group-item-success');
+
+                newArray = GetData(listName);
+
+                for(let i = 0; i<newArray.length; i++){
+                    if(todoItem.id === newArray[i].id){
+                        if(newArray[i].done === false){
+                            newArray[i].done = true;
+                        } else{
+                            newArray[i].done = false;   
+                        }                                                                
+                    }
+                }
+
+                SetData(listName,newArray);
+                console.log(array);
             });
 
             todoItem.deleteButton.addEventListener('click', function(){
@@ -145,28 +182,14 @@
                     todoItem.item.remove();
                 }
 
-                for(let i = 0; i<array.length; i++){
-                    if(todoItem.id === array[i].id){
-                        //array.splice(i, 1);
-                        delete array[i];
-                    }
-                }
-                  
+                newArray = GetData(listName);
+                newArray = newArray.filter(el => el.id !== todoItem.id)
+                console.log(newArray);
+
+                SetData(listName,newArray);
+                
             });
 
-            // создаем и добавляем в список новое дело с названием из поля для ввода
-            todoList.append(todoItem.item);
-
-            //обнуляем значение в поле, что не пришлось стирать ег вручную
-            todoItemForm.input.value = '';
-
-        
-            //todoItemForm.button.disabled= true;
-
-            
-            //let array = [];
-            
-            
             function ArrayAdd(name,done){
                 array.push({
                     name: name,
@@ -174,10 +197,19 @@
                     done: done,
                 });               
             }
-            ArrayAdd(todoItem.name,false);           
+
+            ArrayAdd(todoItem.name,todoItem.done); 
+                      
             console.log(array);
-            
-                  
+
+            // создаем и добавляем в список новое дело с названием из поля для ввода
+            todoList.append(todoItem.item);
+
+            //обнуляем значение в поле, что не пришлось стирать ег вручную
+            todoItemForm.input.value = '';
+
+            SetData(listName,array);          
+            //console.log(GetData(listName));                            
         });
     }
     window.createTodoApp = createTodoApp;
