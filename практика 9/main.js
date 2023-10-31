@@ -39,20 +39,11 @@
         arrayCards.push(item);
         
         container.append(item.cardItem); 
-        
-        card.addEventListener('click', () => {
+
+        function createCard(){
             card.textContent = `${item.cardNumber}`; 
             openedCards.push(item);
-    
-            function contains(arr, elem) {
-                for (var i = 0; i < arr.length; i++) {
-                    if (arr[i] === elem) {
-                        return true;
-                    }
-                }
-                return false;
-            }
-   
+            
             if(openedCards.length === 2){
                 function clearValue(card1, card2){
                     card1.textContent = '';
@@ -65,12 +56,13 @@
                 else{
                     openedCards[0].cardItem.textContent = `${item.cardNumber}`;
                     openedCards[1].cardItem.textContent = `${item.cardNumber}`;
-                    if(!contains(openedCardsCount, openedCards[0])){
-                        openedCardsCount.push(openedCards[0]);
-                    }
-                    if(!contains(openedCardsCount, openedCards[1])){
-                        openedCardsCount.push(openedCards[1]);
-                    }                              
+                    
+                    openedCardsCount.push(openedCards[0]);  
+                    openedCardsCount.push(openedCards[1]);
+    
+                    for(let e of openedCardsCount){
+                        e.cardItem.removeEventListener('click', createCard);
+                    }                          
                 }
                 openedCards = [];
             }
@@ -85,7 +77,12 @@
                 button.classList.add('bth');
                 button.textContent = "Сыграть ещё раз";      
             }
-        });      
+        }
+
+        if(openedCards.length < 2){
+            card.addEventListener('click', createCard);   
+        }            
     } 
 })();
+
 
