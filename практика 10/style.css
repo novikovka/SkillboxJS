@@ -1,0 +1,95 @@
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+.container{
+    padding: 0 100px;
+    max-width: 1900px;
+    width: 100%;
+    overflow: hidden;
+    /* align-content: center; */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header-title{
+    text-align: center;
+    font-size: 30px;
+}
+
+.header-bth{
+    /* margin-bottom: 25px; */
+    width: 150px;
+    height: 30px;
+}
+
+.table {
+	width: 100%;
+	margin-bottom: 20px;
+    margin-top: 25px;
+	border: 1px solid #dddddd;
+	border-collapse: collapse; 
+}
+.table th {
+	font-weight: bold;
+	padding: 5px;
+	background: #efefef;
+	border: 1px solid #dddddd;
+}
+.table td {
+	border: 1px solid #dddddd;
+	padding: 5px;
+}
+
+.form{
+    width: 30vmin;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    padding: 10px 20px 20px 20px;
+    /* margin-bottom: 25px; */
+    outline: solid 1px  black;
+}
+/*
+.input{
+    display: block;
+    margin-bottom: 10px;
+}
+*/
+
+.form input{
+    display: block;
+    margin-bottom: 10px;
+}
+
+.all-error{
+    color: firebrick;
+    margin-top: 10px;
+}
+
+.title{
+    background-color:#d8d8d8;
+    width: 20vmin;
+    height: 2vmin;
+    cursor: pointer;
+    user-select: none;
+}
+
+.filter{
+    width: 80vmin;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    padding: 10px 20px 20px 20px;
+    /* margin-bottom: 25px; */
+    outline: solid 1px  black;
+
+}
+
+.filter-btn{
+    margin-top: 20px;
+    display: block;
+}
+
+.filter-intut{
+    width: 18vmin;
+}

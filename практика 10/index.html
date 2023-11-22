@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список студентов</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src ="./main.js"></script> 
+
+</head>
+<body>
+    <div class="container">
+        <section class="header">
+            <h1 class="header-title">Список студентов</h1>     
+        </section>
+
+        <section class="main">  
+          <div class="form">
+            <h2 class="form-title">добавить студента</h2>
+            <div>
+              <label for="">Фамилия</label>
+              <input type="text" class="surnameInput" required>
+            </div>
+            <div>
+              <label for="" >Имя</label>
+              <input type="text" class="nameInput" required>
+            </div>
+            <div>
+              <label for="">Отчество</label>
+              <input type="text" class="fatherNameInput" required>
+            </div>
+            <div>
+              <label for="">дата рождения</label>
+              <input type="date" class="dateBirthInput" max="2023-11-01" min="1900-01-01" required>
+            </div>
+            <div>
+              <label for="">год начала обучения</label>
+              <input type="text" class="yearCommencementStudyInput" required>
+            </div>
+            <div>
+              <label for="">факультет</label>
+              <input type="text" class="facultyInput" required>
+            </div>
+            <button class="button">Добавить</button>
+            
+            <div class="errorSurname all-error"></div>
+            <div class="errorName all-error"></div>
+            <div class="errorFatherName all-error"></div>
+            <div class="errorDateBirth all-error"></div>
+            <div class="errorYearCommencementStudy all-error"></div>
+            <div class="errorFaculty all-error"></div>
+          </div>
+
+          <div class="filter">
+            <h2 class="filter-title">Фильтрация</h2>
+            <input type="text" class="filter-intut filter-intut-fio" placeholder="ФИО">
+            <input type="text" class="filter-intut filter-intut-fac" placeholder="Факультет">
+            <input type="number" class="filter-intut filter-intut-begin-education" placeholder="Год начала обучения">
+            <input type="number" class="filter-intut filter-intut-end-education" placeholder="Год окончания обучения">
+            <button class="filter-btn"> Фильтровать</button>
+          </div>
+
+          <table style="text-align:center" id="my_table">
+            <thead>
+            <tr>
+                <th id="fio" class="title">ФИО</th>
+                <th id="fac" class="title">Факультет</th>
+                <th id="bornded" class="title">Дата рождения</th>
+                <th id="start_study" class="title">Годы обучения</th>
+            </tr>
+            </thead>
+            <tbody id="table"></tbody>
+            </table>
+
+        </section>
+    </div>
+    
+</body>
+</html>
