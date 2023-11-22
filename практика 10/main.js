@@ -60,14 +60,14 @@ document.addEventListener('DOMContentLoaded', () => {
         header[i].addEventListener('click', order);
     }
 
-    var now = new Date(); //Текущя дата
-    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); //Текущя дата без времени
+    let now = new Date(); //Текущя дата
+    let today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); //Текущя дата без времени
 
     function getAge(bornded) {
 
-        var dob = new Date(bornded);
-        var dobnow = new Date(today.getFullYear(), dob.getMonth(), dob.getDate()); //ДР в текущем году
-        var age; 
+        let dob = new Date(bornded);
+        let dobnow = new Date(today.getFullYear(), dob.getMonth(), dob.getDate()); //ДР в текущем году
+        let age; 
 
         age = today.getFullYear() - dob.getFullYear();
         if (today < dobnow) {
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if(!(dateBirthInput.value).trim()){
             errorDateBirth.textContent = '\"дата рождения\" - обязательное поле!';
-        } else if(Number(dateBirthInput.value.slice(0, 4)) < 1900){
+        } else if(+(dateBirthInput.value.slice(0, 4)) < 1900){
             errorDateBirth.textContent = 'дата рождения находится в диапазоне от 01.01.1900 до текущей даты!';       
         } else{
             errorDateBirth.textContent = '';
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
             errorYearCommencementStudy.textContent = '\"год начала обучения\" - обязательное поле!';
         }else if(!isFinite(yearCommencementStudyInput.value)){
             errorYearCommencementStudy.textContent = 'год начала обучения - число!';
-        }else if(Number(yearCommencementStudyInput.value) <= 2000){
+        }else if(+yearCommencementStudyInput.value <= 2000){
             errorYearCommencementStudy.textContent = 'год начала обучения находится в диапазоне от 2000-го до текущего года!';    
         } else{
             errorYearCommencementStudy.textContent = '';
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return bornded.split('-').reverse().join('.');
     }
 
-    function AddStudent() {
+    function addStudent() {
         validator();
         if (validName && validSurname && validFatherName && validDateBirth && validYearCommencementStudy && validFaculty){
             let newStudent = { surname: surnameInput.value, name: nameInput.value,
@@ -187,12 +187,12 @@ document.addEventListener('DOMContentLoaded', () => {
             let old = getAge(data[i].bornded);
             let end_study;
             let course;
-            if(Number(todayYear) - Number(data[i].start_study) > 4){
-                end_study =  Number(data[i].start_study) + 4;
+            if(+todayYear - +data[i].start_study > 4){
+                end_study =  +data[i].start_study + 4;
                 course = '(Закончил)';
             } else{
-                end_study = Number(todayYear);
-                course = `(${Number(todayYear) - Number(data[i].start_study)} курс)`;           
+                end_study = +todayYear;
+                course = `(${+todayYear - +data[i].start_study} курс)`;           
             }
             let row = `
             <tr>
@@ -211,13 +211,13 @@ document.addEventListener('DOMContentLoaded', () => {
         let copy = [...arr];
         for(let item of copy){
             if(prop === 'fio'){
-                if ((String(item['name']).includes(value) == true) || 
-                (String(item['surname']).includes(value) == true) || 
-                (String(item['middle_name']).includes(value) == true)) result.push(item)
+                if ((String(item['name']).includes(value)) || 
+                (String(item['surname']).includes(value)) || 
+                (String(item['middle_name']).includes(value))) result.push(item)
             }else if(prop === 'end_study'){
-                if(String(Number(item['start_study'])+4).includes(value) == true) result.push(item)
+                if(String(+item['start_study']+4).includes(value)) result.push(item)
             }else{
-                if(String(item[prop]).includes(value) == true) result.push(item)
+                if(String(item[prop]).includes(value)) result.push(item)
             }             
         }
         return result     
@@ -232,16 +232,16 @@ document.addEventListener('DOMContentLoaded', () => {
         let filterStart_study = document.querySelector('.filter-intut-begin-education').value;
         let filterEnd_study = document.querySelector('.filter-intut-end-education').value;
         let newArr = [...arr]; 
-        if(filterFIO != ''){
+        if(filterFIO){
             newArr = filter(newArr, 'fio', filterFIO) 
         }
-        if(filterFac != ''){
+        if(filterFac){
             newArr = filter(newArr, 'fac', filterFac) 
         }
-        if(filterStart_study != ''){
+        if(filterStart_study){
             newArr = filter(newArr, 'start_study', filterStart_study) 
         }
-        if(filterEnd_study != ''){
+        if(filterEnd_study){
             newArr = filter(newArr, 'end_study', filterEnd_study) 
         } 
 
@@ -252,12 +252,12 @@ document.addEventListener('DOMContentLoaded', () => {
             let old = getAge(user.bornded);
             let end_study;
             let course;
-            if(Number(todayYear) - Number(user.start_study) > 4){
-                end_study =  Number(user.start_study) + 4;
+            if(+todayYear - +user.start_study > 4){
+                end_study =  +user.start_study + 4;
                 course = '(Закончил)';
             } else{
-                end_study = Number(todayYear);
-                course = `(${Number(todayYear) - Number(user.start_study)} курс)`;           
+                end_study = +todayYear;
+                course = `(${+todayYear - +user.start_study} курс)`;           
             }
             let row = `
             <tr>
@@ -277,9 +277,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     let addButton = document.querySelector('.button');
-    addButton.addEventListener('click', AddStudent);
+    addButton.addEventListener('click', addStudent);
 
     let filterButton = document.querySelector('.filter-btn');
     filterButton.addEventListener('click', help);
-
 });
