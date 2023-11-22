@@ -1,17 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    /*
-    let arr = [
-        {
-            surname: '',
-            name: '',
-            middle_name: '',
-            bornded: '',
-            start_study: '',
-            fac: ''
-        }    
-    ];
-    */
-
     arr = [];
     // Порядок сортировки
     let ordASC = 1;
@@ -40,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function order(e) {
-        if (e.target && e.target.id) {
+        if (e.target?.id) {
             switch (e.target.id) {
                 case 'fio':
                     selectOrd(e.target.id);
@@ -55,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    const header = document.getElementsByTagName('th');
+    const header = document.querySelectorAll('th');
     for (let i = 0; i < header.length; i++) {
         header[i].addEventListener('click', order);
     }
@@ -76,12 +63,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return age
     }
 
-    let nameInput = document.querySelector('.nameInput');
-    let surnameInput = document.querySelector('.surnameInput');
-    let fatherNameInput = document.querySelector('.fatherNameInput');
-    let dateBirthInput = document.querySelector('.dateBirthInput');
-    let yearCommencementStudyInput = document.querySelector('.yearCommencementStudyInput');
-    let facultyInput = document.querySelector('.facultyInput');
+    const form = {
+        name:document.querySelector('.name'),
+        surname:document.querySelector('.surname'),
+        fatherName:document.querySelector('.fatherName'),
+        dateBirth:document.querySelector('.dateBirth'),
+        yearCommencementStudy:document.querySelector('.yearCommencementStudy'),
+        faculty:document.querySelector('.faculty'),
+    };
 
     function validator(){
         let errorName = document.querySelector('.errorName');
@@ -91,48 +80,48 @@ document.addEventListener('DOMContentLoaded', () => {
         let errorYearCommencementStudy = document.querySelector('.errorYearCommencementStudy');
         let errorFaculty = document.querySelector('.errorFaculty');
 
-        if(!(surnameInput.value).trim()){
+        if(!(form.surname.value).trim()){
             errorSurname.textContent = '\"фамилия\" - обязательное поле!';
         } else{
             errorSurname.textContent = '';
             validSurname = true;
         } 
         
-        if(!(nameInput.value).trim()){
+        if(!(form.name.value).trim()){
             errorName.textContent = '\"имя\" - обязательное поле!';
         } else{
             errorName.textContent = '';
             validName = true;
         }
         
-        if(!(fatherNameInput.value).trim()){
+        if(!(form.fatherName.value).trim()){
             errorFatherName.textContent = '\"отчество\" - обязательное поле!';
         } else{
             errorFatherName.textContent = '';
             validFatherName = true;
         } 
 
-        if(!(dateBirthInput.value).trim()){
+        if(!(form.dateBirth.value).trim()){
             errorDateBirth.textContent = '\"дата рождения\" - обязательное поле!';
-        } else if(+(dateBirthInput.value.slice(0, 4)) < 1900){
+        } else if(+(form.dateBirth.value.slice(0, 4)) < 1900){
             errorDateBirth.textContent = 'дата рождения находится в диапазоне от 01.01.1900 до текущей даты!';       
         } else{
             errorDateBirth.textContent = '';
             validDateBirth = true;
         }
 
-        if(!(yearCommencementStudyInput.value).trim()){
+        if(!(form.yearCommencementStudy.value).trim()){
             errorYearCommencementStudy.textContent = '\"год начала обучения\" - обязательное поле!';
-        }else if(!isFinite(yearCommencementStudyInput.value)){
+        }else if(!isFinite(form.yearCommencementStudy.value)){
             errorYearCommencementStudy.textContent = 'год начала обучения - число!';
-        }else if(+yearCommencementStudyInput.value <= 2000){
+        }else if(+form.yearCommencementStudy.value <= 2000){
             errorYearCommencementStudy.textContent = 'год начала обучения находится в диапазоне от 2000-го до текущего года!';    
         } else{
             errorYearCommencementStudy.textContent = '';
             validYearCommencementStudy = true;
         }
 
-        if(!(facultyInput.value).trim()){
+        if(!(form.faculty.value).trim()){
             errorFaculty.textContent = '\"факультет\" - обязательное поле!';
         } else{
             errorFaculty.textContent = '';
@@ -147,23 +136,23 @@ document.addEventListener('DOMContentLoaded', () => {
     function addStudent() {
         validator();
         if (validName && validSurname && validFatherName && validDateBirth && validYearCommencementStudy && validFaculty){
-            let newStudent = { surname: surnameInput.value, name: nameInput.value,
-                middle_name: fatherNameInput.value,
-                bornded: RefactorBornded(dateBirthInput.value),
-                start_study: yearCommencementStudyInput.value,
-                fac: facultyInput.value
+            let newStudent = { surname: form.surname.value, name: form.name.value,
+                middle_name: form.fatherName.value,
+                bornded: RefactorBornded(form.dateBirth.value),
+                start_study: form.yearCommencementStudy.value,
+                fac: form.faculty.value
             }
             arr.push(newStudent);
             console.log(arr);
             buildTable(arr);
         }
 
-        nameInput.value = '';
-        surnameInput.value = '';
-        fatherNameInput.value = '';
-        dateBirthInput.value = '';
-        yearCommencementStudyInput.value = '';
-        facultyInput.value = '';
+        form.name.value = '';
+        form.surname.value = '';
+        form.fatherName.value = '';
+        form.dateBirth.value = '';
+        form.yearCommencementStudy.value = '';
+        form.faculty.value = '';
 
         validName = false;
         validSurname = false;
