@@ -1,0 +1,204 @@
+[
+
+  {
+    "id": "001",
+    "img": "меню(фото)/салат с лососем.jpg",
+    "name": "Салат с хрустящим лососем и половинкой авокадо",
+    "label": "new",
+    "description": "Red/Sky Blue",
+    "price": "567",
+    "category": "салаты",
+    "gender": "Womens"
+  },
+  {
+    "id": "002",
+    "img": "меню(фото)/цезарь.jpg",
+    "name": " 'Цезарь' с тигровыми креветками",
+    "label": "Bestseller",
+    "description": "Bright Blue",
+    "price": "340",
+    "category": "салаты",
+    "gender": "Womens"
+  },
+  {
+    "id": "003",
+    "img": "меню(фото)/салат с кальмарами.jpg",
+    "name": "Салат с кальмарами, огурцом и яйцом",
+    "label": "Bestseller",
+    "description": "Bright Blue",
+    "price": "389",
+    "category": "салаты",
+    "gender": "Womens"
+  },
+  {
+    "id": "004",
+    "img": "меню(фото)/цезарь с грудкой.jpg",
+    "name": " 'Цезарь' с куриной грудкой",
+    "label": "Bestseller",
+    "description": "Bright Blue",
+    "price": "259",
+    "category": "салаты",
+    "gender": "Womens"
+  },
+  {
+    "id": "005",
+    "img": "меню(фото)/суп из тыквы.jpg",
+    "name": "Суп-пюре из тыквы с цыпленком",
+    "label": "Bestseller",
+    "description": "Bright Blue",
+    "price": "320",
+    "category": "супы",
+    "gender": "Womens"
+  },
+  {
+    "id": "006",
+    "img": "меню(фото)/борщь.jpg",
+    "name": "Красный борщ с телятиной и салом",
+    "label": "Bestseller",
+    "description": "Bright Blue",
+    "price": "290",
+    "category": "супы",
+    "gender": "Womens"
+  },
+  {
+    "id": "007",
+    "img": "меню(фото)/уха.jpg",
+    "name": "Уха с лососем и судаком",
+    "label": "Bestseller",
+    "description": "Bright Blue",
+    "price": "560",
+    "category": "супы",
+    "gender": "Womens"
+  },
+  {
+    "id": "008",
+    "img": "меню(фото)/грибница.jpg",
+    "name": "Грибница из лесных грибов с картофелем и сметаной",
+    "label": "Bestseller",
+    "description": "Bright Blue",
+    "price": "240",
+    "category": "супы",
+    "gender": "Womens"
+  },
+  {
+    "id": "009",
+    "img": "меню(фото)/креветки на гриле.jpg",
+    "name": "Креветки на гриле с бататом фри и соусом 'Пармезан'",
+    "label": "Bestseller",
+    "description": "Bright Blue",
+    "price": "420",
+    "category": "горячее из рыбы",
+    "gender": "Womens"
+  },
+  {
+    "id": "010",
+    "img": "меню(фото)/запеченый окунь.jpg",
+    "name": "Запеченный морской окунь с картофельным пюре и томатами",
+    "label": "Bestseller",
+    "description": "Bright Blue",
+    "price": "670",
+    "category": "горячее из рыбы",
+    "gender": "Womens"
+  },
+  {
+    "id": "011",
+    "img": "меню(фото)/мурманская треска.jpg",
+    "name": "Мурманская треска с базиликовым пюре",
+    "label": "Bestseller",
+    "description": "Bright Blue",
+    "price": "870",
+    "category": "горячее из рыбы",
+    "gender": "Womens"
+  },
+  {
+    "id": "012",
+    "img": "меню(фото)/судак.jpg",
+    "name": "Судак в хрустящей корочке с цветной капустой",
+    "label": "Bestseller",
+    "description": "Bright Blue",
+    "price": "1024",
+    "category": "горячее из рыбы",
+    "gender": "Womens"
+  },
+  {
+    "id": "013",
+    "img": "меню(фото)/утиная грудка.jpg",
+    "name": "Утиная грудка с пюре из сельдерея и соусом 'Порто'",
+    "label": "Bestseller",
+    "description": "Bright Blue",
+    "price": "568",
+    "category": "горячее из мяса",
+    "gender": "Womens"
+  },
+  {
+    "id": "014",
+    "img": "меню(фото)/котлета в сухарях.jpg",
+    "name": "Котлета из фермерского кролика с зеленым горошком",
+    "label": "Bestseller",
+    "description": "Bright Blue",
+    "price": "430",
+    "category": "горячее из мяса",
+    "gender": "Womens"
+  },
+  {
+    "id": "015",
+    "img": "меню(фото)/куриные котлетки.jpg",
+    "name": "Куриные котлетки с пюре и грибной икрой",
+    "label": "Bestseller",
+    "description": "Bright Blue",
+    "price": "270",
+    "category": "горячее из мяса",
+    "gender": "Womens"
+  },
+  {
+    "id": "016",
+    "img": "меню(фото)/домашние котлеты.jpg",
+    "name": "Домашние котлеты с пюре и грибным рагу",
+    "label": "Bestseller",
+    "description": "Bright Blue",
+    "price": "180",
+    "category": "горячее из мяса",
+    "gender": "Womens"
+  },
+  {
+    "id": "017",
+    "img": "меню(фото)/мильфей.jpg",
+    "name": "Мильфей со свежими ягодами",
+    "label": "Bestseller",
+    "description": "Bright Blue",
+    "price": "340",
+    "category": "десерты",
+    "gender": "Womens"
+  },
+  {
+    "id": "018",
+    "img": "меню(фото)/десерт.jpg",
+    "name": "Бананово-творожный десерт с соусом из манго",
+    "label": "Bestseller",
+    "description": "Bright Blue",
+    "price": "190",
+    "category": "десерты",
+    "gender": "Womens"
+  },
+  {
+    "id": "019",
+    "img": "меню(фото)/грушевый торт.jpg",
+    "name": "Шоколадно-грушевый торт",
+    "label": "Bestseller",
+    "description": "Bright Blue",
+    "price": "300",
+    "category": "десерты",
+    "gender": "Womens"
+  },
+  {
+    "id": "020",
+    "img": "меню(фото)/творожная шкатулка.jpg",
+    "name": "'Творожная шкатулка' с соусом из вишен",
+    "label": "Bestseller",
+    "description": "Bright Blue",
+    "price": "455",
+    "category": "десерты",
+    "gender": "Womens"
+  }
+  
+]
